@@ -7,7 +7,7 @@
 //
 
 #import "SelectPhoneNumViewController.h"
-#import "LJContactManager.h"
+#import "SHContactManager.h"
 
 @interface SelectPhoneNumViewController ()
 
@@ -20,7 +20,7 @@
 
 - (IBAction)selectPhoneNumAction:(id)sender
 {
-    [[LJContactManager sharedInstance] selectContactAtController:self complection:^(NSString *name, NSString *phone) {
+    [[SHContactManager sharedInstance] selectContactAtController:self complection:^(NSString *name, NSString *phone) {
         self.nameTextField.text = name;
         self.phoneNumTextField.text = phone;
     }];

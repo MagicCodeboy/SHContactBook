@@ -23,8 +23,8 @@
 {
     self.iconImageV.image = model.image ? model.image : [UIImage imageNamed:@"hand portrait"];
     self.nameLabel.text = model.fullName;
-    SHPerson *phoneModel = model.phones.firstObject;
-    self.phoneNumLabel.text = phoneModel.phones;
+    SHPhone *phoneModel = model.phones.firstObject;
+    self.phoneNumLabel.text = phoneModel.phone;
 }
 
 - (void)awakeFromNib {

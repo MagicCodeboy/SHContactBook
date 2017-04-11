@@ -7,8 +7,8 @@
 //
 
 #import "SortAddressBookViewController.h"
-#import "LJPerson.h"
-#import "LJContactManager.h"
+#import "SHPerson.h"
+#import "SHContactManager.h"
 #import "ContactTableViewCell.h"
 
 @interface SortAddressBookViewController ()
@@ -24,52 +24,52 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[LJContactManager sharedInstance] accessSectionContactsComplection:^(BOOL succeed, NSArray<LJSectionPerson *> *contacts, NSArray<NSString *> *keys) {
+    [[SHContactManager sharedInstance] accessSectionContactsComplection:^(BOOL succeed, NSArray<SHSectionPerson *> *contacts, NSArray<NSString *> *keys) {
         
         self.dataSource = contacts;
         self.keys = keys;
         [self.tableView reloadData];
         
-        for (LJSectionPerson *sectionModel in contacts)
+        for (SHSectionPerson *sectionModel in contacts)
         {
             NSLog(@"---------------------***%@***------------------------------------",sectionModel.key);
             
-            for (LJPerson *person in sectionModel.persons)
+            for (SHPerson *person in sectionModel.persons)
             {
                 NSLog(@"名字列表：fullName = %@, firstName = %@, lastName = %@", person.fullName, person.familyName, person.givenName);
                 
-                for (LJPhone *model in person.phones)
+                for (SHPhone *model in person.phones)
                 {
                     NSLog(@"号码：phone = %@, label = %@", model.phone,model.label);
                 }
                 
-                for (LJEmail *model in person.emails)
+                for (SHEmail *model in person.emails)
                 {
                     NSLog(@"电子邮件：email = %@, label = %@", model.email, model.label);
                 }
                 
-                for (LJAddress *model in person.addresses)
+                for (SHAddress *model in person.addresses)
                 {
                     NSLog(@"地址：address = %@, label = %@", model.city, model.label);
                 }
-                for (LJMessage *model in person.messages)
+                for (SHMessage *model in person.messages)
                 {
                     NSLog(@"即时通讯：service = %@, userName = %@", model.service, model.userName);
                 }
                 
-                NSLog(@"生日：brithdayDate = %@",person.birthday.brithdayDate);
+                NSLog(@"生日：brithdayDate = %@",person.birthday.brithdayData);
                 
-                for (LJSocialProfile *model in person.socials)
+                for (SHSocialProfile *model in person.socials)
                 {
-                    NSLog(@"社交：service = %@, username = %@, urlString = %@", model.service, model.username, model.urlString);
+                    NSLog(@"社交：service = %@, username = %@, urlString = %@", model.service, model.userName, model.urlString);
                 }
                 
-                for (LJContactRelation *model in person.relations)
+                for (SHContactRelation *model in person.relations)
                 {
                     NSLog(@"关联人：label = %@, name = %@", model.label, model.name);
                 }
                 
-                for (LJUrlAddress *model in person.urls)
+                for (SHUrlAddress *model in person.urls)
                 {
                     NSLog(@"URL：label = %@, urlString = %@", model.label,model.urlString);
                 }
@@ -87,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    LJSectionPerson *sectionModel = self.dataSource[section];
+    SHSectionPerson *sectionModel = self.dataSource[section];
     return sectionModel.persons.count;
 }
 
@@ -95,8 +95,8 @@
 {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
     
-    LJSectionPerson *sectionModel = self.dataSource[indexPath.section];
-    LJPerson *personModel = sectionModel.persons[indexPath.row];
+    SHSectionPerson *sectionModel = self.dataSource[indexPath.section];
+    SHPerson *personModel = sectionModel.persons[indexPath.row];
     
     cell.model = personModel;
     
@@ -115,7 +115,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    LJSectionPerson *sectionModel = self.dataSource[section];
+    SHSectionPerson *sectionModel = self.dataSource[section];
     return sectionModel.key;
 }
 

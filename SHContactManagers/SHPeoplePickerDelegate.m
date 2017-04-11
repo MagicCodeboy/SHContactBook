@@ -106,4 +106,7 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:contactController];
     [controller presentViewController:nav animated:YES completion:nil];
 }
+-(NSString *)description{
+    return @"";
+}
 @end

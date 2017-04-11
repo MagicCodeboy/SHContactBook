@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class LJPerson;
+@class SHPerson;
 
 @interface ContactTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) LJPerson *model;
+@property (nonatomic, strong) SHPerson *model;
 
 @end

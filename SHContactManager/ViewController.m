@@ -10,7 +10,8 @@
 #import "SHContactManager.h"
 
 
-@interface ViewController ()<UIActionSheetDelegate>
+@interface ViewController ()<UIActionSheetDelegate,UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
 @property(nonatomic,strong) UIButton * phoneBtn;
 @end
 
@@ -41,6 +42,22 @@
     } else if (buttonIndex == 1){
         [[SHContactManager sharedInstance] addToExistingContactsWithPhoneNum:self.phoneBtn.titleLabel.text controller:self];
     }
+}
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+
+}
+
+#pragma mark ---- TableViewDelegate and TableViewDataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString * identificer = @"cellOne";
+    UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:identificer];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identificer];
+    }
+    return cell;
 }
 
 
